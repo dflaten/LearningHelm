@@ -56,6 +56,11 @@ Here is a diagram describing the system:
 8. Confirm it successfully installs: 
 `kubectl get pods -n kanban`
 
+### Front End Access
+1. Forward a port to access front end via a browser. 
+`kubectl port-forward svc/kanban-frontend 8081:8080 -n kanban`
+
+2. Access Front end at [http://localhost:8081](http://localhost:8081).
 
 ## Reference
 This basic application was taken from Github user `wkrzywiec/kanban-board`
