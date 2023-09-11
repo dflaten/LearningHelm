@@ -5,7 +5,7 @@ Here is a diagram describing the system:
 ![HelmApplicationDiagram](HelmApplicationDiagram.png "Helm Chart System Architecture.")
 
 ## Application Folder Structure
-
+```
 ────app
     │   .helmignore
     │   Chart.yaml
@@ -23,6 +23,7 @@ Here is a diagram describing the system:
         │
         └───tests
                 test-connection.yaml
+```
 
 * `.helmignore` - This file is used to identify which files which should be
   ignored when packaging the Helm chart.
