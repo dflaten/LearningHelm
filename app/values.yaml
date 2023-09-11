@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 app:
-  name: default-app-name
+  name: '' 
   group: default-app-group
   replicaCount: 1
   container: 

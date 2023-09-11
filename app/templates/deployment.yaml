@@ -3,27 +3,21 @@ kind: Deployment
 metadata:
   # .Values is a built in Helm object which allows you to access the variables
   # defined in the values.yaml file in the Helm Chart
-  name: {{ .Values.app.name }}
+  name: {{ include "app.fullName" . }}
   labels:
-    app.kubernetes.io/name: {{ .Values.app.name }}
-    # This represents the version of the Helm release. Because this number
-    # should be different for every updatrade we use the .Release Helm object
-    app.kubernetes.io/version: {{ .Release.Name }}-{{ .Release.Revision }}
-    app: {{ .Values.app.group }}
-    group: {{ .Values.app.group }}
+{{ include "app.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.app.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.app.name }}
+      app: {{ include "app.fullName" . }}
   template:
     metadata:
       labels:
-        app: {{ .Values.app.name }}
-        group: {{ .Values.app.group }}
+{{ include "app.labels" . | indent 8 }}
     spec:
       containers:
-        - name: {{ .Values.app.name }}
+        - name: {{ include "app.fullName" . }}
           image: {{ .Values.app.container.image }}
           ports:
             - containerPort: {{ .Values.app.container.port }}
@@ -37,4 +31,3 @@ spec:
             - name: {{ .key }}
               value: {{ .value }}
             {{- end }}
-

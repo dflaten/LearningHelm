@@ -3,14 +3,15 @@ kind: Service
 metadata:
   name: {{ .Values.app.name }}
   labels:
-    app.kubernetes.io/name: {{ .Values.app.name }}
-    app.kubernetes.io/version: {{ .Release.Name }}-{{ .Release.Revision }}
-    app: {{ .Values.app.name }}
-    group: {{ .Values.app.group }}
+# | is a pipe and you are piping the first command's output into the second
+# command first command 'include' second command indent.
+# This is needed because the include statement will not include the correct
+# indentation. you need to define it.
+{{ include "app.labels" . | indent 4 }}
 spec:
   type: {{ .Values.app.service.type }}
   selector:
-    app: {{ .Values.app.name}}
+    app: {{ include "app.fullName" . }}
   ports: 
     - port: {{ .Values.app.service.port }}
       targetPort: {{ .Values.app.container.port }}

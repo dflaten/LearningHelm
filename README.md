@@ -39,7 +39,7 @@ Here is a diagram describing the system:
 * `templates/tests` - contains the tests which verify if the installation ends
   with a success.
 
-## Setup
+## Setup / Installation Steps
 1. Clone repo. 
 2. Add Helm repository: 
 `helm repo add bitnami https://charts.bitnami.com/bitnami`
