@@ -1,8 +1,11 @@
 # Helm Learning Project
-This repo contains a helm chart created as a part of learning Docker Helm
+This repo contains a helm chart created as a part of learning Docker Helm.
 
 Here is a diagram describing the system:
+
 ![HelmApplicationDiagram](HelmApplicationDiagram.png "Helm Chart System Architecture.")
+
+
 
 ## Application Folder Structure
 ```
