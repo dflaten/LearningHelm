@@ -3,12 +3,8 @@ app:
   group: backend
   container:
     image: wkrzywiec/kanban-app:helm-course
-    env:
-      - key: DB_SERVER
-        value: postgres
-      - key: POSTGRES_DB
-        value: kanban
-      - key: POSTGRES_USER
-        value: kanban
-      - key: POSTGRES_PASSWORD
-        value: kanban
+    env: 
+      DB_SERVER: postgres
+      POSTGRES_DB: kanban
+      POSTGRES_USER: kanban
+      POSTGRES_PASSWORD: kanban

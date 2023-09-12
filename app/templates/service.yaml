@@ -2,12 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.app.name }}
-  labels:
 # | is a pipe and you are piping the first command's output into the second
 # command first command 'include' second command indent.
 # This is needed because the include statement will not include the correct
 # indentation. you need to define it.
-{{ include "app.labels" . | indent 4 }}
+  labels: {{ include "app.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.app.service.type }}
   selector:
