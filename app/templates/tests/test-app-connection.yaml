@@ -1,0 +1,35 @@
+# This value turns tests on or off if we don't want them enabled
+{{- if .Values.test.enabled }}
+apiVersion: v1
+kind: Pod
+metadata:
+  #Name of the pod that is created
+  name: "{{ .Release.Name }}-{{ .Release.Revision }}-connection-test"
+  labels: {{ include "app.labels" . | nindent 4 }}
+  annotations:
+    #This annotation tells Helm that this Kubernetes resource will act as a
+    #test suite. When `helm test` is ran, Helm will scan all templates
+    #and look for any resources with this annotation.
+    "helm.sh/hook": test
+    #This annotation makes sure that if there is already an existing Pod from
+    #a prvious revision, the old one is removed as well.
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  containers:
+    - name: {{ .Release.Name }}-connection-test
+      #This sit he base docker image in which our test script will be executed.
+      #We are using the official Docker image here because we only need the
+      #curl command for the tests
+      image: curlimages/curl:latest
+      command:
+        - sh
+        - -c
+        - |
+          #This is the actual test. We are testing to make sure the container
+          #is healthy. We use configuration variables so we can test different
+          #kinds of applications.
+            curl --max-time 3 {{ include "app.fullName" . }}:{{ .Values.app.service.port }}{{ .Values.test.connection.endpoint }}
+  #This makes sure that event if a Pod crashes, Kubernetes won't try to
+  #recreate it.
+  restartPolicy: Never
+{{- end }}

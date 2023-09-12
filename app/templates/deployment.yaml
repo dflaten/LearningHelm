@@ -22,7 +22,7 @@ spec:
             - containerPort: {{ .port }}
           {{- end}}
           {{- if .Values.app.container.env }}
-          # Here we have to use the helm template function, range which will
+          # Here we have to use the helm template fuction, range which will
           # take an array as a paramter and loop over it to give a generated
           # result.
           # In this case we are pulling in all of the environment variables

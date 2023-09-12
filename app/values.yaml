@@ -19,3 +19,7 @@ app:
   service:
     type: ClusterIP
     port: 8080
+test:
+  enabled: true
+  connection:
+    endpoint: '/'

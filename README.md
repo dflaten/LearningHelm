@@ -62,5 +62,14 @@ Here is a diagram describing the system:
 
 2. Access Front end at [http://localhost:8081](http://localhost:8081).
 
+### Running tests
+1. Make your changes to the templates. Save them, then upload them with a
+   command like: 
+`helm upgrade kanban-frontend ./app -n kanban --wait --values kanban-frontend.yaml`
+2. Execute the tests with a command like: 
+`helm test kanban-frontend --namespace kanban`
+or if you want detailed logs:
+`helm test kanban-frontend --logs --namespace kanban`
+
 ## Reference
 This basic application was taken from Github user `wkrzywiec/kanban-board`
